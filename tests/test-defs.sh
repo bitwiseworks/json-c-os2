@@ -112,6 +112,7 @@ run_output_test()
 
 	else
 		eval "\"${top_builddir}/${TEST_COMMAND}"\" \"\$@\" ${REDIR_OUTPUT}
+		dos2unix ${TEST_OUTPUT}.out
 		err=$?
 	fi
 
