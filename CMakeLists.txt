@@ -487,6 +487,14 @@ if (BUILD_STATIC_LIBS AND BUILD_SHARED_LIBS)
     list(APPEND CMAKE_TARGETS ${STATIC_LIB})
 endif ()
 
+if(OS2)
+  set_target_properties(${PROJECT_NAME} PROPERTIES
+    OS2_DEF_VENDOR "$ENV{VENDOR}"
+    OS2_DEF_PATCH "${PROJECT_VERSION_PATCH}"
+    OS2_DEF_VERSION "${PROJECT_VERSION}"
+    TARGET_SHORT jsonc)
+endif()
+
 # Always create new install dirs with 0755 permissions, regardless of umask
 set(CMAKE_INSTALL_DEFAULT_DIRECTORY_PERMISSIONS
 	OWNER_READ

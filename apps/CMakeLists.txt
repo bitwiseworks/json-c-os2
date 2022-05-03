@@ -116,6 +116,13 @@ include_directories(${PROJECT_BINARY_DIR})
 add_executable(json_parse json_parse.c)
 target_link_libraries(json_parse PRIVATE ${APPS_LINK_LIBS})
 
+if(OS2)
+  set_target_properties(json_parse PROPERTIES
+    OS2_DEF_VENDOR "$ENV{VENDOR}"
+    OS2_DEF_PATCH "${PROJECT_VERSION_PATCH}"
+    OS2_DEF_VERSION "${PROJECT_VERSION}")
+endif()
+
 # Note: it is intentional that there are no install instructions here yet.
 # When/if the interface of the app(s) listed here settles down enough to
 # publish as part of a regular build that will be added.
