@@ -105,7 +105,7 @@ option(DISABLE_EXTRA_LIBS             "Avoid linking against extra libraries, su
 option(DISABLE_JSON_POINTER           "Disable JSON pointer (RFC6901) support."               OFF)
 
 
-if (UNIX OR MINGW OR CYGWIN)
+if (UNIX OR MINGW OR CYGWIN OR OS2)
     list(APPEND CMAKE_REQUIRED_DEFINITIONS -D_GNU_SOURCE)
 endif()
 
@@ -164,7 +164,7 @@ endif()
 check_symbol_exists(_isnan          "float.h" HAVE_DECL__ISNAN)
 check_symbol_exists(_finite         "float.h" HAVE_DECL__FINITE)
 
-if ((MSVC AND NOT (MSVC_VERSION LESS 1800)) OR MINGW OR CYGWIN OR UNIX)
+if ((MSVC AND NOT (MSVC_VERSION LESS 1800)) OR MINGW OR CYGWIN OR UNIX OR OS2)
     check_symbol_exists(INFINITY    "math.h" HAVE_DECL_INFINITY)
     check_symbol_exists(isinf       "math.h" HAVE_DECL_ISINF)
     check_symbol_exists(isnan       "math.h" HAVE_DECL_ISNAN)
@@ -172,7 +172,7 @@ if ((MSVC AND NOT (MSVC_VERSION LESS 1800)) OR MINGW OR CYGWIN OR UNIX)
 endif()
 
 check_symbol_exists(_doprnt         "stdio.h" HAVE_DOPRNT)
-if (UNIX OR MINGW OR CYGWIN)
+if (UNIX OR MINGW OR CYGWIN OR OS2)
     check_symbol_exists(snprintf    "stdio.h" HAVE_SNPRINTF)
 endif()
 check_symbol_exists(vasprintf       "stdio.h" HAVE_VASPRINTF)
@@ -523,7 +523,7 @@ install(
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
 )
 
-if (UNIX OR MINGW OR CYGWIN)
+if (UNIX OR MINGW OR CYGWIN OR OS2)
     SET(prefix ${CMAKE_INSTALL_PREFIX})
     # exec_prefix is prefix by default and CMake does not have the
     # concept.
